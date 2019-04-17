@@ -1,6 +1,6 @@
 A web application version of [beehive](https://github.com/jamesiandalrymple/beehive): a program that can be used to solve or generate New York Times spelling bee puzzles like the following:
 
-[![puzzle with main letter U and secondary letters T A E I N P](https://raw.githubusercontent.com/jamesiandalrymple/beehive/master/beehive-puzzle.png)](https://raw.githubusercontent.com/jamesiandalrymple/beehive/master/beehive-puzzle.png)
+[![puzzle with main letter U and secondary letters T A E I N P](https://dalrym.pl/media/img/beehive-puzzle.png)](https://dalrym.pl/media/img/beehive-puzzle.png)
 
 ## Building
 
