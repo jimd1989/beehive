@@ -34,6 +34,7 @@ library:
     - -Wincomplete-patterns
 
 default-extensions:
+- GeneralizedNewtypeDeriving
 - NoImplicitPrelude
 - OverloadedStrings
 - RecordWildCards

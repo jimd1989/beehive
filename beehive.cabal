@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ced190f3d2ee4076b4bbf6de1e25c1e47c6e181b4ff5173259cd8cb5eb52947a
+-- hash: b8ef78c3eeef4ea2e70bbb46043365fa0fac6bca2e6716474d9a4ee30e06247e
 
 name:           beehive
 version:        0.1.0.0
@@ -34,7 +34,7 @@ library
       Paths_beehive
   hs-source-dirs:
       src
-  default-extensions: NoImplicitPrelude OverloadedStrings RecordWildCards UnicodeSyntax
+  default-extensions: GeneralizedNewtypeDeriving NoImplicitPrelude OverloadedStrings RecordWildCards UnicodeSyntax
   ghc-options: -O2 -Wincomplete-patterns
   build-depends:
       base >=4.7 && <5
@@ -51,7 +51,7 @@ executable beehive-exe
       Paths_beehive
   hs-source-dirs:
       app
-  default-extensions: NoImplicitPrelude OverloadedStrings RecordWildCards UnicodeSyntax
+  default-extensions: GeneralizedNewtypeDeriving NoImplicitPrelude OverloadedStrings RecordWildCards UnicodeSyntax
   ghc-options: -O2 -threaded -rtsopts -with-rtsopts=-N -Wincomplete-patterns
   build-depends:
       base >=4.7 && <5
@@ -70,7 +70,7 @@ test-suite beehive-test
       Paths_beehive
   hs-source-dirs:
       test
-  default-extensions: NoImplicitPrelude OverloadedStrings RecordWildCards UnicodeSyntax
+  default-extensions: GeneralizedNewtypeDeriving NoImplicitPrelude OverloadedStrings RecordWildCards UnicodeSyntax
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5

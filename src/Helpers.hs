@@ -1,10 +1,14 @@
-module Helpers ((◁), (◀), (⊙), (●), (◇), fork) where
+module Helpers ((◁), (◀), (⊙), (●), (◇), fork, dyfork) where
 
-import Protolude ((.), (<*>), (<=<), (<>), fmap)
-import Control.Applicative (Applicative, liftA2)
+import Protolude (Bool, (.), (<=<), (<>), fmap)
+import Control.Applicative (Alternative, Applicative, (<*>), liftA2)
 
 fork :: Applicative f ⇒ (a → b → c) → f a → f b → f c
 fork = liftA2
+
+dyfork ∷ (Applicative f1, Applicative f2) ⇒
+  (a → b → c) → f1 (f2 a) → f1 (f2 b) → f1 (f2 c)
+dyfork = fork . fork
 
 -- Digraph Tl
 f ◁ g = fmap f . g
