@@ -28,7 +28,7 @@ dependencies:
 - warp
 
 library:
-  source-dirs: src
+  source-dirs: src, src/models
   ghc-options:
     - -O2
     - -Wincomplete-patterns
@@ -43,7 +43,7 @@ default-extensions:
 executables:
   beehive-exe:
     main:                Main.hs
-    source-dirs:         app
+    source-dirs:         app, src, src/models
     ghc-options:
     - -O2
     - -threaded

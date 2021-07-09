@@ -1,11 +1,11 @@
-module Word where
+module Models.Word where
 
 import Protolude (Show, (<), (.), guarded, pure)
 import Data.Bits (popCount)
 import Data.Maybe (Maybe(..), mapMaybe)
 import Data.Text (Text)
-import Hash (Hash, hash)
 import Helpers ((◀), dyfork)
+import Models.Hash (Hash, hash)
 
 data Word = Word {
   wordHash ∷ Hash,
