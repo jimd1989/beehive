@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 27eebfa06f551c4d7c43110b6b201ff7ff155ada578e4891458435d2c466d80f
+-- hash: eb81b27357a62a758de9137e1195551e7a376f8981c59b9853bb3a52f2dbde12
 
 name:           beehive
 version:        0.1.0.0
@@ -26,11 +26,19 @@ source-repository head
   location: https://github.com/githubuser/beehive
 
 library
+  exposed-modules:
+      Helpers
+      Models.Hash
+      Models.PuzzleQuery
+      Models.Word
+      Output.Match
   other-modules:
       Paths_beehive
   hs-source-dirs:
-      src, src/models
-  default-extensions: GeneralizedNewtypeDeriving NoImplicitPrelude OverloadedStrings RecordWildCards UnicodeSyntax
+      src
+      src/models
+      src/output
+  default-extensions: GeneralizedNewtypeDeriving NamedFieldPuns NoImplicitPrelude OverloadedStrings RecordWildCards UnicodeSyntax
   ghc-options: -O2 -Wincomplete-patterns
   build-depends:
       base >=4.7 && <5
@@ -46,8 +54,8 @@ executable beehive-exe
   other-modules:
       Paths_beehive
   hs-source-dirs:
-      app, src, src/models
-  default-extensions: GeneralizedNewtypeDeriving NoImplicitPrelude OverloadedStrings RecordWildCards UnicodeSyntax
+      app
+  default-extensions: GeneralizedNewtypeDeriving NamedFieldPuns NoImplicitPrelude OverloadedStrings RecordWildCards UnicodeSyntax
   ghc-options: -O2 -threaded -rtsopts -with-rtsopts=-N -Wincomplete-patterns
   build-depends:
       base >=4.7 && <5
@@ -66,7 +74,7 @@ test-suite beehive-test
       Paths_beehive
   hs-source-dirs:
       test
-  default-extensions: GeneralizedNewtypeDeriving NoImplicitPrelude OverloadedStrings RecordWildCards UnicodeSyntax
+  default-extensions: GeneralizedNewtypeDeriving NamedFieldPuns NoImplicitPrelude OverloadedStrings RecordWildCards UnicodeSyntax
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5

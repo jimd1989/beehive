@@ -28,13 +28,17 @@ dependencies:
 - warp
 
 library:
-  source-dirs: src, src/models
+  source-dirs:
+    - src
+    - src/models
+    - src/output
   ghc-options:
     - -O2
     - -Wincomplete-patterns
 
 default-extensions:
 - GeneralizedNewtypeDeriving
+- NamedFieldPuns
 - NoImplicitPrelude
 - OverloadedStrings
 - RecordWildCards
@@ -43,7 +47,8 @@ default-extensions:
 executables:
   beehive-exe:
     main:                Main.hs
-    source-dirs:         app, src, src/models
+    source-dirs:
+      - app
     ghc-options:
     - -O2
     - -threaded

@@ -1,7 +1,7 @@
-module Models.Hash (Hash, hash, inHash) where
+module Models.Hash (Hash, hash, offset) where
 
-import Protolude (Bool, Eq, Int, Maybe(..), Show, (.), ($), (-), fromInteger, ord)
-import Data.Bits (Bits, setBit, testBit)
+import Protolude (Eq, Int, Maybe(..), Show, (.), ($), (-), fromInteger, ord)
+import Data.Bits (Bits, setBit)
 import Data.Char (Char, isLetter, toLower)
 import Data.List (foldl)
 import Data.Text (Text, unpack)
@@ -20,6 +20,3 @@ fromChar _              = Nothing
 
 hash ∷ Text → Maybe Hash
 hash = (Hash . fromInteger . foldl setBit 0) ◁ traverse fromChar . unpack
-
-inHash ∷ Hash → Char → Bool
-inHash α = testBit α . offset

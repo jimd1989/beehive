@@ -1,4 +1,4 @@
-module Models.Word where
+module Models.Word(Word(..), words) where
 
 import Protolude (Show, (<), (.), guarded, pure)
 import Data.Bits (popCount)
