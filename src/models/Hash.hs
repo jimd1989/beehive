@@ -1,4 +1,4 @@
-module Models.Hash (Hash, hash, offset) where
+module Models.Hash (Hash(..), hash, offset) where
 
 import Protolude (Eq, Int, Maybe(..), Show, (.), ($), (-), fromInteger, ord)
 import Data.Bits (Bits, setBit)

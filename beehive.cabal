@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: eb81b27357a62a758de9137e1195551e7a376f8981c59b9853bb3a52f2dbde12
+-- hash: 5fb0a9277fac9f784a7b0fc6b9b3f75b9d51b722d87d3cfc29d27241b3c104c8
 
 name:           beehive
 version:        0.1.0.0
@@ -27,6 +27,7 @@ source-repository head
 
 library
   exposed-modules:
+      Debug
       Helpers
       Models.Hash
       Models.PuzzleQuery
@@ -42,10 +43,13 @@ library
   ghc-options: -O2 -Wincomplete-patterns
   build-depends:
       base >=4.7 && <5
+    , containers
     , errors
+    , http-types
     , parallel
     , protolude
     , text
+    , wai
     , warp
   default-language: Haskell2010
 
@@ -60,10 +64,13 @@ executable beehive-exe
   build-depends:
       base >=4.7 && <5
     , beehive
+    , containers
     , errors
+    , http-types
     , parallel
     , protolude
     , text
+    , wai
     , warp
   default-language: Haskell2010
 
@@ -79,9 +86,12 @@ test-suite beehive-test
   build-depends:
       base >=4.7 && <5
     , beehive
+    , containers
     , errors
+    , http-types
     , parallel
     , protolude
     , text
+    , wai
     , warp
   default-language: Haskell2010
