@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 8469c3e23073964e0231ccbb77d0a6f032e6c189546fd6bcafdd8b7f9f334dee
+-- hash: bbc2acb129ba201175a56c052224926d4d9ad8d9abd8dbc2d14f0414e84992d1
 
 name:           beehive
 version:        0.1.0.0
@@ -29,6 +29,7 @@ library
   exposed-modules:
       Hash
       Helpers
+      Query
   other-modules:
       Paths_beehive
   hs-source-dirs:
@@ -37,7 +38,6 @@ library
   ghc-options: -O2 -Wincomplete-patterns
   build-depends:
       base >=4.7 && <5
-    , containers
     , errors
     , http-types
     , protolude
@@ -58,7 +58,6 @@ executable beehive-exe
   build-depends:
       base >=4.7 && <5
     , beehive
-    , containers
     , errors
     , http-types
     , protolude
@@ -80,7 +79,6 @@ test-suite beehive-test
   build-depends:
       base >=4.7 && <5
     , beehive
-    , containers
     , errors
     , http-types
     , protolude

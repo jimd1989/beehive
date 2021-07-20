@@ -7,7 +7,7 @@ import Data.Bits (Bits, popCount, setBit)
 import Data.Char (Char, isLetter, toLower)
 import Data.Function (const, on)
 import Data.HashMap.Strict (HashMap, fromList)
-import Data.List (foldl, foldl1, groupBy, map, sortBy)
+import Data.List (filter, foldl, foldl1, groupBy, map, sortBy)
 import Data.Maybe (mapMaybe)
 import Data.Ord (Ord, (<), (>), compare)
 import Data.Text (Text, intercalate, length, unpack)
@@ -28,15 +28,15 @@ fromChar α | isLetter α = Just (offset $ toLower α)
 fromChar _              = Nothing
 
 hash ∷ Text → Maybe Hash
-hash = checkBits ◀ setBits ◁ toBits ◀ checkLength
-  where checkLength = guarded ((> 4) . length)
-        toBits      = traverse fromChar . unpack
+hash = checkBits ◀ setBits ◁ toBits
+  where toBits      = traverse fromChar . unpack
         setBits     = Hash . fromInteger. foldl setBit 0
         checkBits   = guarded ((< 8) . popCount)
         
 dictionary ∷ FilePath → IO (HashMap Hash Text)
-dictionary = (fromList . rows . group . sort . hashes . lines) ◁ readFile
-  where hashes = mapMaybe (sequence . (identity &&& hash))
+dictionary = (fromList . rows . group . sort . hashes . cut . lines) ◁ readFile
+  where cut    = filter ((< 5) . length)
+        hashes = mapMaybe (sequence . (identity &&& hash))
         sort   = sortBy (compare `on` snd)
         group  = groupBy ((==) `on` snd)
         key    = foldl1 const . map snd
