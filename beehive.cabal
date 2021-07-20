@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5fb0a9277fac9f784a7b0fc6b9b3f75b9d51b722d87d3cfc29d27241b3c104c8
+-- hash: 0c0d68f8d9439f235f5e7f5956835034a813138f617836ed2546548c8eef0760
 
 name:           beehive
 version:        0.1.0.0
@@ -46,9 +46,9 @@ library
     , containers
     , errors
     , http-types
-    , parallel
     , protolude
     , text
+    , unordered-containers
     , wai
     , warp
   default-language: Haskell2010
@@ -67,9 +67,9 @@ executable beehive-exe
     , containers
     , errors
     , http-types
-    , parallel
     , protolude
     , text
+    , unordered-containers
     , wai
     , warp
   default-language: Haskell2010
@@ -89,9 +89,9 @@ test-suite beehive-test
     , containers
     , errors
     , http-types
-    , parallel
     , protolude
     , text
+    , unordered-containers
     , wai
     , warp
   default-language: Haskell2010

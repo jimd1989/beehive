@@ -1,16 +1,22 @@
+{-# LANGUAGE MagicHash #-}
+
 module Debug where
 
-import Protolude (Integer, (.), (==), length, lines, map, readFile, toInteger)
+import Protolude (Bool, (.), (^), (*), (==), length, lines, map, readFile)
 import Data.Set (fromList, toList)
+import Data.Word (Word32)
 import GHC.IO (FilePath)
 import System.IO.Unsafe (unsafePerformIO)
-import Helpers ((◁))
+import Helpers ((◁), fork)
 import Models.Hash (Hash(..))
 import Models.Word (Word(..), words)
 
-hashes ∷ FilePath → [Integer]
+hashes ∷ FilePath → [Word32]
 hashes = unique . extract ◁ words . lines . unsafePerformIO . readFile
-  where extract = toInteger . getHash . wordHash
+  where extract = getHash . wordHash
         unique  = toList . fromList
 
---isUnique ∷ (Integer → Integer) → [Hash] → Bool
+isUnique ∷ (Word32 → Word32) → [Word32] → Bool
+isUnique f = fork (==) old new
+  where old = length
+        new = length . toList . fromList . map f

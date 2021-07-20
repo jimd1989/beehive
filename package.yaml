@@ -24,9 +24,9 @@ dependencies:
 - containers
 - errors
 - http-types
-- parallel
 - protolude
 - text
+- unordered-containers
 - wai
 - warp
 
