@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0c0d68f8d9439f235f5e7f5956835034a813138f617836ed2546548c8eef0760
+-- hash: 8469c3e23073964e0231ccbb77d0a6f032e6c189546fd6bcafdd8b7f9f334dee
 
 name:           beehive
 version:        0.1.0.0
@@ -27,18 +27,12 @@ source-repository head
 
 library
   exposed-modules:
-      Debug
+      Hash
       Helpers
-      Models.Hash
-      Models.PuzzleQuery
-      Models.Word
-      Output.Match
   other-modules:
       Paths_beehive
   hs-source-dirs:
       src
-      src/models
-      src/output
   default-extensions: GeneralizedNewtypeDeriving NamedFieldPuns NoImplicitPrelude OverloadedStrings RecordWildCards UnicodeSyntax
   ghc-options: -O2 -Wincomplete-patterns
   build-depends:

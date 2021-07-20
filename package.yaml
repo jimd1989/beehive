@@ -33,8 +33,6 @@ dependencies:
 library:
   source-dirs:
     - src
-    - src/models
-    - src/output
   ghc-options:
     - -O2
     - -Wincomplete-patterns

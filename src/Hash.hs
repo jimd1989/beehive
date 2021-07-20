@@ -1,4 +1,4 @@
-module Models.Hash where
+module Hash (Hash, dictionary, hash) where
 
 import Protolude (Eq, Hashable, Int, IO, Maybe(..), Show, (.), ($), (-), (==), 
                   fromInteger, guarded, identity, lines, ord, readFile)
