@@ -1,10 +1,10 @@
 name:                beehive
 version:             0.1.0.0
-github:              "githubuser/beehive"
+github:              "jimd1989/beehive"
 license:             BSD3
-author:              "Author name here"
+author:              "Jim Dalrymple"
 maintainer:          "example@example.com"
-copyright:           "2021 Author name here"
+copyright:           "2021 Jim Dalrymple"
 
 extra-source-files:
 - README.md
@@ -21,7 +21,7 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
-- errors
+- bytestring
 - http-types
 - protolude
 - text

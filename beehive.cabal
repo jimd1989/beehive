@@ -4,16 +4,16 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: bbc2acb129ba201175a56c052224926d4d9ad8d9abd8dbc2d14f0414e84992d1
+-- hash: 48ffd4ffce71810732207ef7d9d2d2918d6104b81b6faed9001282892883e086
 
 name:           beehive
 version:        0.1.0.0
 description:    Please see the README on GitHub at <https://github.com/githubuser/beehive#readme>
-homepage:       https://github.com/githubuser/beehive#readme
-bug-reports:    https://github.com/githubuser/beehive/issues
-author:         Author name here
+homepage:       https://github.com/jimd1989/beehive#readme
+bug-reports:    https://github.com/jimd1989/beehive/issues
+author:         Jim Dalrymple
 maintainer:     example@example.com
-copyright:      2021 Author name here
+copyright:      2021 Jim Dalrymple
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
@@ -23,7 +23,7 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/beehive
+  location: https://github.com/jimd1989/beehive
 
 library
   exposed-modules:
@@ -38,7 +38,7 @@ library
   ghc-options: -O2 -Wincomplete-patterns
   build-depends:
       base >=4.7 && <5
-    , errors
+    , bytestring
     , http-types
     , protolude
     , text
@@ -58,7 +58,7 @@ executable beehive-exe
   build-depends:
       base >=4.7 && <5
     , beehive
-    , errors
+    , bytestring
     , http-types
     , protolude
     , text
@@ -79,7 +79,7 @@ test-suite beehive-test
   build-depends:
       base >=4.7 && <5
     , beehive
-    , errors
+    , bytestring
     , http-types
     , protolude
     , text
