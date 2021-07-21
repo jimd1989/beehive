@@ -1,21 +1,20 @@
 module Hash (Hash, dictionary, hash) where
 
-import Protolude (Eq, Hashable, Int, IO, Maybe(..), Show, (.), ($), (-), (==), 
+import Protolude (Eq, Hashable, Int, IO, Show, (.), ($), (-), (==), 
                   fromInteger, guarded, identity, lines, ord, readFile)
 import Control.Arrow ((&&&))
 import Data.Bits (Bits, popCount, setBit)
 import Data.Char (Char, isLetter, toLower)
-import Data.Function (const, on)
-import Data.HashMap.Strict (HashMap, fromList)
-import Data.List (filter, foldl, foldl1, groupBy, map, sortBy)
-import Data.Maybe (mapMaybe)
-import Data.Ord (Ord, (<), (>), compare)
-import Data.Text (Text, intercalate, length, unpack)
+import Data.HashMap.Strict (HashMap, fromListWith)
+import Data.List (filter, foldl)
+import Data.Maybe (Maybe(..), mapMaybe)
+import Data.Ord (Ord, (<), (>))
+import Data.Text (Text, length, unpack)
 import Data.Traversable (sequence, traverse)
-import Data.Tuple (fst, snd)
+import Data.Tuple (swap)
 import Data.Word (Word32)
 import GHC.IO (FilePath)
-import Helpers ((◁), (◀))
+import Helpers ((◁), (◀), (◇))
 
 newtype Hash = Hash { getHash ∷ Word32 }
   deriving (Bits, Eq, Hashable, Ord, Show)
@@ -34,11 +33,7 @@ hash = checkBits ◀ setBits ◁ toBits
         checkBits   = guarded ((< 8) . popCount)
         
 dictionary ∷ FilePath → IO (HashMap Hash Text)
-dictionary = (fromList . rows . group . sort . hashes . cut . lines) ◁ readFile
-  where cut    = filter ((< 5) . length)
-        hashes = mapMaybe (sequence . (identity &&& hash))
-        sort   = sortBy (compare `on` snd)
-        group  = groupBy ((==) `on` snd)
-        key    = foldl1 const . map snd
-        value  = intercalate "\n" . map fst
-        rows   = map (key &&& value)
+dictionary = (fromListWith paste . hashes . truncate . lines) ◁ readFile
+  where truncate  = filter ((> 5) . length)
+        hashes    = mapMaybe (swap ◁ sequence . (identity &&& hash))
+        paste α ω = α ◇ "\n" ◇ ω
