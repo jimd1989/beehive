@@ -1,4 +1,4 @@
-module Hash (Hash, dictionary, hash) where
+module Hash (Hash(..), dictionary, hash) where
 
 import Protolude (Eq, Hashable, Int, IO, Show, (.), ($), (-), (==), ($>),
                   and, fromInteger, guarded, identity, lines, ord, readFile)

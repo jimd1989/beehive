@@ -1,6 +1,6 @@
-module Helpers ((◁), (◀), (⊙), (◇), fork) where
+module Helpers ((◁), (◀), (⊙), (◇), (≠), fork) where
 
-import Protolude (Bool, (.), (<=<), (<>), fmap)
+import Protolude (Bool, (.), (/=), (<=<), (<>), fmap)
 import Control.Applicative (Alternative, Applicative, (<*>), liftA2)
 
 fork :: Applicative f ⇒ (a → b → c) → f a → f b → f c
@@ -21,3 +21,7 @@ infixl 4 ⊙
 -- Digraph Dw
 α ◇ ω = α <> ω
 infixr 5 ◇
+
+-- Digraph !=
+α ≠ ω = α /= ω
+infix 4 ≠
