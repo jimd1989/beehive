@@ -2,6 +2,7 @@ module Main where
 
 import Protolude (Int, IO, (.), ($), (==), pure, readMaybe)
 import Control.Monad (guard)
+import Data.ByteString.Lazy (ByteString)
 import Data.ByteString.Lazy.Char8 (fromChunks)
 import Data.HashMap.Strict (HashMap)
 import Data.List ((!!), length)
@@ -35,16 +36,20 @@ parseArgs = do
   file ← pure $ args !! 1
   pure $ (port, file)
 
-route ∷ HashMap Hash Text → Request → Response
+route ∷ HashMap Hash ByteString → Request → Response
 route dict α = case pathInfo α of
  ("answer" : ω : []) → handleQuery dict ω
  ([]               ) → textResponse status200 homeMsg
  (_                ) → textResponse status404 "invalid path"
 
-handleQuery ∷ HashMap Hash Text → Text → Response
+handleQuery ∷ HashMap Hash ByteString → Text → Response
 handleQuery dict α = case query dict α of
-  (Just ω ) → textResponse status200 ω
+  (Just ω ) → okResponse ω
   (Nothing) → textResponse status400 "malformated puzzle query"
+
+
+okResponse ∷ ByteString → Response
+okResponse α = responseLBS status200 [(hContentType, "text/plain")] α
 
 textResponse ∷ Status → Text → Response
 textResponse α ω = responseLBS α [(hContentType, "text/plain")] (convert ω)

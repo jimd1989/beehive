@@ -1,16 +1,18 @@
 module Hash (Hash(..), dictionary, hash) where
 
 import Protolude (Eq, Hashable, Int, IO, Show, (.), ($), (-), (==), ($>),
-                  and, fromInteger, guarded, identity, lines, ord, readFile)
+                  and, fromInteger, guarded, lines, ord, readFile)
 import Control.Arrow ((&&&))
 import Control.Monad (guard)
 import Data.Bits (Bits, popCount, setBit)
+import Data.ByteString.Lazy (ByteString, fromStrict)
 import Data.Char (Char, isLetter, isLower, toLower)
 import Data.HashMap.Strict (HashMap, fromListWith)
 import Data.List (filter, foldl)
 import Data.Maybe (Maybe(..), mapMaybe)
 import Data.Ord (Ord, (<), (>))
 import Data.Text (Text, length, unpack)
+import Data.Text.Encoding (encodeUtf8)
 import Data.Traversable (sequence, traverse)
 import Data.Tuple (swap)
 import Data.Word (Word32)
@@ -33,9 +35,10 @@ hash = checkBits ◀ setBits ◁ toBits
         setBits     = Hash . fromInteger. foldl setBit 0
         checkBits   = guarded ((< 8) . popCount)
         checkCase α = guard (and $ isLower ⊙ α) $> α
-        
-dictionary ∷ FilePath → IO (HashMap Hash Text)
+
+dictionary ∷ FilePath → IO (HashMap Hash ByteString)
 dictionary = (fromListWith paste . hashes . truncate . lines) ◁ readFile
   where truncate  = filter ((> 5) . length)
-        hashes    = mapMaybe (swap ◁ sequence . (identity &&& hash))
+        convert   = fromStrict . encodeUtf8
+        hashes    = mapMaybe (swap ◁ sequence . (convert &&& hash))
         paste α ω = α ◇ "\n" ◇ ω
