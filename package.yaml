@@ -27,6 +27,7 @@ dependencies:
 - text
 - unordered-containers
 - wai
+- wai-extra
 - warp
 
 library:

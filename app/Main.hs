@@ -13,6 +13,7 @@ import Data.Tuple (fst, snd)
 import GHC.IO (FilePath)
 import Network.Wai (Response, Request, pathInfo, responseLBS)
 import Network.Wai.Handler.Warp (run)
+import Network.Wai.Middleware.Gzip (GzipSettings(..), GzipFiles(..), def, gzip)
 import Network.HTTP.Types (Status, status200, status400, status404)
 import Network.HTTP.Types.Header (hContentType)
 import System.Environment (getArgs)
@@ -26,7 +27,10 @@ main = do
   port ← pure $ fst args
   file ← pure $ snd args
   dict ← dictionary file
-  run port (\req send → send $ route dict req)
+  run port $ gzip settings $ \req send → send $ route dict req
+
+settings ∷ GzipSettings
+settings = def { gzipFiles = GzipCompress }
 
 parseArgs ∷ IO (Int, FilePath)
 parseArgs = do
