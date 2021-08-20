@@ -38,9 +38,10 @@ query' dict n key bits
 query ∷ HashMap Hash ByteString → Text → Maybe ByteString
 query dict = process ◁ (lookup . toLower) ◀ check
   where
-    check  α  = guard (7 == (length $ nub $ unpack $ take 7 α)) $> α
-    essential = hash . take 1
-    rest      = getHash ◁ hash . drop 1
-    lookup    = fork (liftA2 (query' dict 0)) essential rest
-    cat       = filter ((≠) "")
-    process   = intercalate "\n" . fork (:) ((◇ "\n") . last) init . cat
+    check  α    = guard (7 == (length $ nub $ unpack $ take 7 α)) $> α
+    essential   = hash . take 1
+    rest        = getHash ◁ hash . drop 1
+    lookup      = fork (liftA2 (query' dict 0)) essential rest
+    splitSevens = fork (:) ((◇ "\n") . last) init
+    cat         = filter ((≠) "")
+    process     = intercalate "\n" . cat . splitSevens

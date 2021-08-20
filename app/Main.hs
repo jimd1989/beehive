@@ -47,7 +47,6 @@ handleQuery dict α = case query dict α of
   (Just ω ) → okResponse ω
   (Nothing) → textResponse status400 "malformated puzzle query"
 
-
 okResponse ∷ ByteString → Response
 okResponse α = responseLBS status200 [(hContentType, "text/plain")] α
 
